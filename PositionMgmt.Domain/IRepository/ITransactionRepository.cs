@@ -13,7 +13,7 @@ namespace PositionMgmt.Domain.IRepository
         /// Retrieves a list of all transactions.
         /// </summary>
         /// <returns>A list of transactions.</returns>
-        Task<List<Transaction>> GetPositions();
+        Task<List<Transaction>> GetTransactions();
 
 
         /// <summary>

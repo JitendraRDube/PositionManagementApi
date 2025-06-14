@@ -17,10 +17,16 @@ namespace PositionMgmt.Application.Services
             _transactionRepository = transRepo;
         }
 
+        public async Task<List<Transaction>> GetTransactions()
+        {
+            return await _transactionRepository.GetTransactions();
+        }
 
         public async Task<List<Transaction>> GetPositions()
         {
-            return await _transactionRepository.GetPositions();
+            var transactions = await _transactionRepository.GetTransactions();
+            var positions = transactions.GroupBy(x => x.Symbol).Select(y => new Transaction { Quantity = y.Sum(x => x.ActionTypeId == 1 ? x.Quantity : -x.Quantity), Symbol = y.Key }).ToList();
+            return await Task.FromResult(positions);
         }
 
         public async Task<Transaction> GetTransactionById(int transactionId)

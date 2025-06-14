@@ -18,6 +18,13 @@ namespace PositionMgmt.Api.Controllers
             _transService = transService;
         }
 
+        [HttpGet("GetTransactions")]
+        public async Task<ActionResult<List<Transaction>>> GetTransactions()
+        {
+            var positions = await _transService.GetTransactions();
+            return Ok(positions);
+        }
+
         [HttpGet("GetPositions")]
         public async Task<ActionResult<List<Transaction>>> GetPositions()
         {

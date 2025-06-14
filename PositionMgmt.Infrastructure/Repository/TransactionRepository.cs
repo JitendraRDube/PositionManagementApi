@@ -34,7 +34,7 @@ namespace PositionMgmt.Infrastructure.Repository
         /// <summary>
         /// Retrieves a list of all transactions (positions).
         /// </summary>
-        public async Task<List<Transaction>> GetPositions()
+        public async Task<List<Transaction>> GetTransactions()
         {
             var transactions = _positionsDBContext.Transactions?.ToList();
             var actionTypes = _positionsDBContext.ActionMasters?.ToList();
@@ -83,7 +83,10 @@ namespace PositionMgmt.Infrastructure.Repository
 
         public async Task<bool> CancelOrder(int transactionId)
         {
-            _positionsDBContext.Update(new Transaction { TransactionId = transactionId, TransactionTypeId = 3, ModifyDate = DateTime.Now });
+            var existingTrans = _positionsDBContext.Transactions.FirstOrDefault(t => t.TransactionId == transactionId);
+            existingTrans.ModifyDate = DateTime.Now;
+            existingTrans.TransactionTypeId = 3;
+            _positionsDBContext.Update(existingTrans);
             int result = await _positionsDBContext.SaveChangesAsync();
             return result > 0;
         }

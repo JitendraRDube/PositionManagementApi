@@ -15,6 +15,8 @@ namespace PositionMgmt.Application.IServices
         /// <returns>A list of transactions.</returns>
         Task<List<Transaction>> GetPositions();
 
+        Task<List<Transaction>> GetTransactions();
+
 
         /// <summary>
         /// Retrieves a transaction by its unique identifier.
