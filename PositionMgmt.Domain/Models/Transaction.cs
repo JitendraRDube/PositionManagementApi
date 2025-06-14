@@ -2,6 +2,7 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PositionMgmt.Domain.Models;
 
@@ -22,10 +23,12 @@ public partial class Transaction
     /// <summary>
     /// Only for output
     /// </summary>
+    [NotMapped]
     public string? TransactionType { get; set; }
 
     public int? ActionTypeId { get; set; }
 
+    [NotMapped]
     /// <summary>
     /// Only for output
     /// </summary>
