@@ -18,5 +18,10 @@ namespace PositionMgmt.Application.IServices
         /// Retrieves a list of all available transaction types.
         /// </summary>
         Task<List<TransactionTypeMaster>> GetTransactionTypes();
+
+        /// <summary>
+        /// Get list of securities
+        /// </summary>
+        Task<List<SecurityMaster>> GetSecurityMasters();
     }
 }

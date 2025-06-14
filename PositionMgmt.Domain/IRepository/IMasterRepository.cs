@@ -33,5 +33,10 @@ namespace PositionMgmt.Domain.IRepository
         /// </summary>
         /// <param name="id">Action Id</param>
         //Task<TransactionTypeMaster> GetTransactionTypeById(int id);
+
+        /// <summary>
+        /// Get list of securities
+        /// </summary>
+        Task<List<SecurityMaster>> GetSecurityMasters();
     }
 }

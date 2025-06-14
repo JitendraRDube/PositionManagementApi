@@ -36,5 +36,11 @@ namespace PositionMgmt.Infrastructure.Repository
             List<TransactionTypeMaster> types = _positionsDBContext.TransactionTypeMasters.ToList();
             return types;
         }
+
+        public async Task<List<SecurityMaster>> GetSecurityMasters()
+        {
+            List<SecurityMaster> securities = _positionsDBContext.SecurityMasters.ToList();
+            return await Task.FromResult(securities);
+        }
     }
 }

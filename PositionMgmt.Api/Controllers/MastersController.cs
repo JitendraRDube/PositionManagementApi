@@ -34,5 +34,14 @@ namespace PositionMgmt.Api.Controllers
         {
             return await _masterServices.GetTransactionTypes();
         }
+
+        /// <summary>
+        /// To get list of securities e.g. INFY,MSFT
+        /// </summary>
+        [HttpGet("GetSecurityMasters")]
+        public async Task<List<SecurityMaster>> GetSecurityMasters()
+        {
+            return await _masterServices.GetSecurityMasters();
+        }
     }
 }

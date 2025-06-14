@@ -37,4 +37,10 @@ public partial class Transaction
     public DateTime? CreatedDate { get; set; }
 
     public DateTime? ModifyDate { get; set; }
+
+    [NotMapped]
+    /// <summary>
+    /// Only for output
+    /// </summary>
+    public string? Symbol { get; set; }
 }

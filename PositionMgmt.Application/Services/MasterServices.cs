@@ -26,6 +26,14 @@ namespace PositionMgmt.Application.Services
         }
 
         /// <summary>
+        /// Get list of securities
+        /// </summary>
+        public async Task<List<SecurityMaster>> GetSecurityMasters()
+        {
+            return await _masterRepo.GetSecurityMasters();
+        }
+
+        /// <summary>
         /// Retrieves a list of all available transaction types.
         /// </summary>
         public async Task<List<TransactionTypeMaster>> GetTransactionTypes()

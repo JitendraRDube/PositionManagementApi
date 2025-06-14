@@ -36,15 +36,17 @@ namespace PositionMgmt.Infrastructure.Repository
         /// </summary>
         public async Task<List<Transaction>> GetPositions()
         {
-            var transactions = _positionsDBContext.Transactions.ToList();
-            var actionTypes = _positionsDBContext.ActionMasters.ToList();
-            var transactionTypes = _positionsDBContext.TransactionTypeMasters.ToList();
-            foreach (var transaction in transactions)
+            var transactions = _positionsDBContext.Transactions?.ToList();
+            var actionTypes = _positionsDBContext.ActionMasters?.ToList();
+            var transactionTypes = _positionsDBContext.TransactionTypeMasters?.ToList();
+            var securityMasters = _positionsDBContext.SecurityMasters?.ToList();
+            foreach (var transaction in transactions ?? [])
             {
-                transaction.ActionType = actionTypes.Find(x => x.Id == transaction.ActionTypeId).ActionType;
-                transaction.TransactionType = transactionTypes.Find(x => x.Id == transaction.TransactionTypeId).TransactionType;
+                transaction.ActionType = actionTypes?.Find(x => x.Id == transaction.ActionTypeId)?.ActionType;
+                transaction.TransactionType = transactionTypes?.Find(x => x.Id == transaction.TransactionTypeId)?.TransactionType;
+                transaction.Symbol = securityMasters?.Find(x => x.Id == transaction.SecurityId)?.SecurityCode;
             }
-            return await Task.FromResult(transactions);
+            return await Task.FromResult(transactions ?? []);
         }
 
         /// <summary>
