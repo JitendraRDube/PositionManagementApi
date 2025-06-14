@@ -1,0 +1,6 @@
+@PositionMgmt.Api_HostAddress = http://localhost:5263
+
+GET {{PositionMgmt.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
